@@ -1,0 +1,38 @@
+{%extends 'core/base.html'%}
+
+{%block title%} {{item.name}} {%endblock%}
+
+{%block content%}
+<div class="grid grid-cols-5 gap-6">
+    <div class="col-span-3">
+        <img src ="{{item.image.url}}" class="rounded-xl">
+    </div>
+    <div class="col-span-2">
+        <h2 class="mb-6 text-5xl">{{item.name}}</h2>
+        <p class="text-gray-500"><strong>Price:</strong> {{item.price}}</p>
+        <p class="text-gray-500"><strong>Seller:</strong> {{item.created_by}}</p>
+        {%if item.description%}
+        <p class="text-gray-700" ><strong>Description:</strong><br> {{item.description}}</p>
+        {%endif%}
+        <a href="#" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Contact Seller</a>
+    </div>
+</div>
+<div class="grid grid-cols-12 gap-6">
+
+    {%for ri in related_items%}
+      <div class="col-span-4">
+          <a href="{%url 'item:detail' ri.id%}">
+           <div class="col-span-3">
+        <img src ="{{ri.image.url}}" class="rounded-xl">
+    </div>
+           <h2 class="mb-6 text-5xl">{{ri.name}}</h2>
+          <p class="text-gray-500"><strong>Price:</strong> {{ri.price}}</p>
+        <p class="text-gray-500"><strong>Seller:</strong> {{ri.created_by}}</p>
+        {%if ri.description%}
+        <p class="text-gray-700" ><strong>Description:</strong><br> {{ri.description}}</p>
+        {%endif%}
+              </a>
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}
