@@ -14,7 +14,15 @@
         {%if item.description%}
         <p class="text-gray-700" ><strong>Description:</strong><br> {{item.description}}</p>
         {%endif%}
+        {%if item.created_by == request.user %}
+        <div class="mt-6 p-6 bg-white rounded-xl">
+                    <p>this is your item!</p>
+            <a href="{%url 'item:edit' item.id %}" class="inline-block mt-6 px-6 py-3 bg-teal-500 text-lg font-semibold rounded-2xl border">Edit</a>
+            <a href="{%url 'item:delete' item.id %}" class="inline-block mt-6 px-6 py-3 bg-red-500 text-lg font-semibold rounded-2xl border">Delete</a>
+        </div>
+     {%else%}
         <a href="#" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Contact Seller</a>
+      {%endif%}
     </div>
 </div>
 <div class="grid grid-cols-12 gap-6">
